@@ -1,48 +1,26 @@
-import leia from 'readline-sync'
+import leia from 'readline-sync';
+import { Categoria, Produto } from './Produto';
 
-var nomes: string[] = [];
-var idades: number[] = [];
-
-var nomeNova: string;
-var idadeNova: number;
-
-var nomeVelha: string;
-var idadeVelha: number;
-
-function pedirInfoUsuario(qtd: number) {
-    for (var i = 0; i < qtd; i++) {
-        var nome = leia.question("INFORME O NOME: ");
-        nomes.push(nome);
-        var idade = leia.questionInt("INFORME A IDADE: ");
-        idades.push(idade);
-    }
+var nomeCategoria = leia.question("INFORME O NOME DA CATEGORIA: ")
+var descCategoria = leia.question("INFORME O DESCRICAO DA CATEGORIA: ")
+const categoria: Categoria = {
+    nome: nomeCategoria,
+    descricao: descCategoria
 }
 
-function pessoaMaisNova(){
-    for(var i = 0; i < idades.length; i++){
-        if(!idadeNova || idades[i] < idadeNova){
-            idadeNova = idades[i];
-            nomeNova = nomes[i];
-        }
-    }
+console.log("--------CATEGORIA CADASTRADA---------")
 
-    console.log(`A PESSOA MAIS NOVA É ${nomeNova} COM ${idadeNova} ANOS`);
+var nomeProduto = leia.question("INFORME O NOME DO PRODUTO: ")
+var preco = leia.questionFloat("INFORME O PREÇO DO PRODUTO: ")
+var codigo = leia.question("INFORME O CÓDIGO DO PRODUTO: ")
+var marca = leia.question("INFORME O MARCA DO PRODUTO: ")
+
+const produto: Produto = {
+    nome: nomeProduto,
+    preco: preco,
+    codigo: codigo,
+    marca: marca,
+    categoria: categoria
 }
 
-function pessoaMaisVelha() {
-    idades.forEach((idade, index) => {
-        if(!idadeVelha || idade > idadeVelha){
-            idadeVelha = idade;
-            nomeVelha = nomes[index];
-        }
-    })
-
-    console.log(`A PESSOA MAIS VELHA É ${nomeVelha} COM ${idadeVelha} ANOS`);
-}
-
-pedirInfoUsuario(5);
-pessoaMaisNova();
-pessoaMaisVelha();
-
-
-
+console.log(produto);
