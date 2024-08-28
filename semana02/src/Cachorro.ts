@@ -2,6 +2,7 @@ import Dono from "./Dono";
 
 export default class Cachorro{
     constructor(nome: string, raca: string, cor: string, tamanho: string, dono: Dono){
+        this.codigo =  String(Math.random() * 50)
         this.nome = nome;
         this.raca = raca;
         this.cor = cor;
@@ -9,6 +10,7 @@ export default class Cachorro{
         this.dono = dono;
     }
 
+    codigo!: string;
     nome: string;
     raca: string;
     cor: string;
