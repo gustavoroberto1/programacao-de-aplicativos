@@ -1,0 +1,36 @@
+header {
+    background-color: #006bb7;
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffffff;
+    font-size: 40px;
+    font-family: cursive;
+    margin-bottom: 20px;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px
+}
+
+header nav ul li a {
+    color: #ffffff;
+    text-decoration: none;    
+    font-weight: bold;
+}
+
+header nav ul li {
+    padding: 10px 20px;
+}
+
+header nav ul li:hover {
+    background-color: blue;
+    border-radius: 10px;
+}
