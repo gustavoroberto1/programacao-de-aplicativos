@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/header.css">
 </head>
 
-<body>
+<body onkeypress="capturarTecla(event)">
     <header>
         <h1>Desenvolvimento de Sistemas 2024</h1>
         <nav>
@@ -55,22 +55,51 @@
 
         <section class="section-main section-contato">
             <h2>Contato</h2>
-            <form action="">
+            <form>
                 <label for="name">Nome completo:</label>
-                <input type="text" id="name" name="name" />
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    oninput="verificarDisabled()"
+                />
 
                 <label for="email">E-mail:</label>
-                <input type="email" name="email" id="email">
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    required 
+                    oninput="verificarDisabled()"
+                />
 
                 <label for="message">Mensagem: </label>
-                <textarea id="message" name="message" rows="5"></textarea>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    rows="5" 
+                    required
+                    oninput="verificarDisabled()"
+                ></textarea>
 
-                <button type="submit">Enviar</button>
+                <button 
+                    type="button"
+                    onclick="pegarInformacoes(event)"
+                    id="enviar"
+                    disabled
+                >Enviar</button>
             </form>
+        </section>
+
+        <section class="section-main section-cursos">
+            <h2>Comentários</h2>
+            <div class="comentarios" id="comentarios">
+            </div>
         </section>
     </main>
 
-
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>
