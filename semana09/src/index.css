@@ -44,6 +44,8 @@ form {
 aside {
   background-color: yellow;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 form h2 {
@@ -58,9 +60,6 @@ form .input-data {
   display: flex;
   flex-direction: column;
   row-gap: 3px;
-}
-
-form .input-data:not(:last-of-type) {
   margin-bottom: 20px;
 }
 
@@ -80,4 +79,29 @@ form .input-data input {
   border: 2px solid #999999;
   background-color: #f0f0f0;
   padding: 0 10px;
+}
+
+form button {
+  width: 100%;
+  background-color: #6931ca;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #6931b1;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+}
+
+.card img {
+  width: 30%;
 }

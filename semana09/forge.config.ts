@@ -21,6 +21,7 @@ const config: ForgeConfig = {
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
       mainConfig,
+      devContentSecurityPolicy: `img-src * self 'unsafe-inline' blob: data: gap:;`,
       renderer: {
         config: rendererConfig,
         entryPoints: [
