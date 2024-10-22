@@ -1,34 +1,7 @@
-/**
- * This file will automatically be loaded by vite and run in the "renderer" context.
- * To learn more about the differences between the "main" and the "renderer" context in
- * Electron, visit:
- *
- * https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes
- *
- * By default, Node.js integration in this file is disabled. When enabling Node.js integration
- * in a renderer process, please be aware of potential security implications. You can read
- * more about security risks here:
- *
- * https://electronjs.org/docs/tutorial/security
- *
- * To enable Node.js integration in this file, open up `main.ts` and enable the `nodeIntegration`
- * flag:
- *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
- */
-
 import './reset.css';
 import './index.css';
 import Tarefa from './Tarefa';
+import Swal from 'sweetalert2';
 
 var tarefas: Tarefa[] = [];
 
@@ -43,11 +16,16 @@ function adicionarTarefa() {
     const tarefaTexto = input.value.trim();
 
     if (tarefaTexto === '') {
-        alert("VOCÊ TENTOU ADICIONAR UMA TAREFA SEM TEXTO");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Você não pode adicionar uma tarefa vazia!",
+        });
         return;
     }
 
     const novaTarefa = new Tarefa(tarefaTexto);
+
     tarefas.push(novaTarefa);
 
     console.log(tarefas)
@@ -79,6 +57,7 @@ function render() {
         const edit = document.createElement("button");
         edit.textContent = "Editar";
         edit.classList.add("edit");
+        // edit.onclick = () => editarTarefa(tarefas[i].getId());
         edit.setAttribute("onclick", `editarTarefa(${tarefas[i].getId()})`)
 
         const deletar = document.createElement("button");
@@ -99,5 +78,41 @@ function render() {
     }
 }
 
+function trocaConcluir(id: number){
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+    const valorAtual = tarefas[index].getCompleted();
+    tarefas[index].setCompleted(!valorAtual);
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    render();
+}
+
+async function editarTarefa(id: number){
+    const index = tarefas.findIndex(tarefa => tarefa.getId() === id);
+    
+    const { value } = await Swal.fire({
+        title: "Editar tarefa!",
+        input: "text",
+        inputLabel: "Edite o texto da tarefa",
+        inputValue: tarefas[index].getText(),
+        icon: 'question'
+    });
+
+    if(value !== undefined && value.trim() !== ''){
+        tarefas[index].setText(value.trim());
+        localStorage.setItem('tarefas', JSON.stringify(tarefas));
+        render();
+    }
+}
+
+function deletarTarefa(id: number){
+   const tarefasFiltradas = tarefas.filter(tarefa => tarefa.getId() !== id);
+   tarefas = tarefasFiltradas;
+   localStorage.setItem('tarefas', JSON.stringify(tarefas));
+   render();
+}
+
 window.addPeloEnter = addPeloEnter;
 window.adicionarTarefa = adicionarTarefa;
+window.trocaConcluir = trocaConcluir;
+window.editarTarefa = editarTarefa;
+window.deletarTarefa = deletarTarefa;
