@@ -42,10 +42,10 @@ form {
 }
 
 aside {
-  background-color: yellow;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 
 form h2 {
@@ -100,8 +100,54 @@ form button:hover {
 .card {
   background-color: #ffffff;
   border-radius: 16px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 .card img {
-  width: 30%;
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card .dados {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card .dados strong {
+  font-size: 20px;
+  font-family: cursive;
+  font-weight: bold;
+}
+
+.card .dados span {
+  font-family: cursive;
+  font-size: 18px;
+}
+
+.card .botao-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.card .botao-card button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.card .botao-card button#botao-ver {
+  background-color: #1d9265;
+  border-bottom-left-radius: 16px;
+}
+
+.card .botao-card button#botao-deletar {
+  background-color: #ff0000;
+  border-bottom-right-radius: 16px
 }
