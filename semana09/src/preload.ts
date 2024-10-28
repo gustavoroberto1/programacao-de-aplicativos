@@ -1,2 +1,11 @@
-// See the Electron documentation for details on how to use preload scripts:
-// https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
+import { contextBridge, ipcRenderer } from "electron";
+import { Carro } from "./entity/Carro";
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  invokeDatabase: async (carro: Carro) => {
+    await ipcRenderer.invoke('teste', carro)
+  },
+  test: (screen: string) => {
+    ipcRenderer.send('change-screen', screen)
+  },
+});
