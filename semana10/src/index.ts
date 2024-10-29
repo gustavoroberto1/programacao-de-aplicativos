@@ -1,14 +1,20 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
+import Veiculo from './entity/Veiculo';
+import VeiculoRepository from './repository/VeiculoRepository';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
+
+let mainWindow: BrowserWindow;
+
+const veiculoRepository = new VeiculoRepository();
 
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
 const createWindow = (): void => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
@@ -35,7 +41,18 @@ app.on('activate', () => {
   }
 });
 
-
-ipcMain.handle('create', async (event: any, veiculo: any) => {
-  console.log(veiculo)
+ipcMain.handle('create', async (event: any, veiculo: Veiculo) => {
+  veiculoRepository.saveVeiculo(veiculo);
 })
+
+ipcMain.handle('load', async () => {
+  return veiculoRepository.findAll();
+})
+
+ipcMain.on('show-view-main', () => {
+  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
+});
+
+ipcMain.on('show-view-specific-veiculo', () => {
+  mainWindow.loadURL("http://localhost:3000/specific-veiculo")
+});
