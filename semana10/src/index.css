@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e5e6f0;
+}
+
+header {
+  background-color: #ffffff;
+  margin: 30px auto 10px;
+  width: 80vw;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: cursive;
+  text-align: center;
+}
+
+main {
+  height: 500px;
+  width: 80vw;
+  margin: 20px auto 0;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
+
+form {
+  background-color: #ffffff;
+  width: 500px;
+  height: fit-content;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+}
+
+aside {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+form h2 {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: cursive;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+form .input-data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  margin-bottom: 20px;
+}
+
+form .input-data label {
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form .input-data input {
+  height: 48px;
+  font-size: 14px;
+  color: #666666;
+  border-radius: 8px;
+  outline: none;
+  border: 2px solid #999999;
+  background-color: #f0f0f0;
+  padding: 0 10px;
+}
+
+form button {
+  width: 100%;
+  background-color: #6931ca;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #6931b1;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card .dados {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card .dados strong {
+  font-size: 20px;
+  font-family: cursive;
+  font-weight: bold;
+}
+
+.card .dados span {
+  font-family: cursive;
+  font-size: 18px;
+}
+
+.card .botao-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.card .botao-card button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.card .botao-card button#botao-ver {
+  background-color: #1d9265;
+  border-bottom-left-radius: 16px;
+}
+
+.card .botao-card button#botao-deletar {
+  background-color: #ff0000;
+  border-bottom-right-radius: 16px
+}
