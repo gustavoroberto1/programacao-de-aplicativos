@@ -1,5 +1,4 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import Veiculo from './entity/Veiculo';
 import VeiculoRepository from './repository/VeiculoRepository';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -41,8 +40,8 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.handle('create', async (event: any, veiculo: Veiculo) => {
-  veiculoRepository.saveVeiculo(veiculo);
+ipcMain.handle('create', async (event: any, veiculo: any) => {
+  await veiculoRepository.saveVeiculo(veiculo);
 })
 
 ipcMain.handle('load', async () => {
