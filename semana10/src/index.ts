@@ -54,8 +54,16 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.handle('create', async (event: any, veiculo: any) => {
+ipcMain.handle('create', async (_: any, veiculo: any) => {
   const { id, modelo, cor, ano, preco, placa, imagem } = veiculo;
   const novoVeiculo = new Veiculo(modelo, cor, ano, preco, placa, imagem, id);
   new VeiculoRepository().save(novoVeiculo);
+})
+
+ipcMain.handle('findAll', async () => {
+  return await new VeiculoRepository().findAll();
+})
+
+ipcMain.handle('findById', async (_: any, id: string) => {
+  return await new VeiculoRepository().findById(id)
 })
