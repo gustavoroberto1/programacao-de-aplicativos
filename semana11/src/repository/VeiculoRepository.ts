@@ -51,7 +51,7 @@ export default class VeiculoRepository {
             this.connection.connect();
             const sql = "SELECT * FROM veiculos WHERE id = $1";
             const result = await this.connection.query(sql, [id]);
-            return result.rows;
+            return result.rows[0];
         } catch (error) {
             console.log(error)
             return []
