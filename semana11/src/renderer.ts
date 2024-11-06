@@ -58,7 +58,7 @@ function render() {
                     <span>Placa: R${listaVeiculos[i].getPlaca()}</span>
                 </div>
                 <div class="botao-card">
-                    <button id="botao-ver" data-id="${listaVeiculos[i].getId()}">VER</button>
+                    <button id="botao-ver" onclick="irPaginaDetalhes('${listaVeiculos[i].getId()}')">VER</button>
                     <button id="botao-deletar" onclick="deletarVeiculo('${listaVeiculos[i].getId()}')">DELETAR</button>
                 </div>
             </div>
@@ -75,4 +75,9 @@ function deletarVeiculo(id: string) {
     render();
 }
 
+function irPaginaDetalhes(id: string){
+    (window as any).navigateAPI.irPaginaDetalhes(id);
+}
+
 (window as any).deletarVeiculo = deletarVeiculo;
+(window as any).irPaginaDetalhes = irPaginaDetalhes;
