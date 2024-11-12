@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 40px;
+    width: 80%;
+    margin: 150px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.login, .cadastro {
+    width: 50%;
+}
+
+.login {
+    border-right: 2px solid #333;
+}
+
+h1 {
+    font-size: 30px;
+    font-family: cursive;
+    font-weight: bold;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.grupo-campos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 16px;
+}
+
+.grupo-campos input {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid #999
+}
+
+.grupo-campos button {
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+} 
+
+.grupo-campos button:hover {
+    background-color: #999;
+}
