@@ -3,6 +3,7 @@ import Veiculo from './entity/Veiculo';
 import VeiculoRepository from './repository/VeiculoRepository';
 import UsuarioRepository from './repository/UsuarioRepository';
 import Usuario from './entity/Usuario';
+import { compare, hash } from 'bcrypt';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -62,12 +63,20 @@ ipcMain.handle('deletarVeiculo', async (_: any, id: string) => {
 
 ipcMain.handle('createUsuario', async (_: any, usuario: any) => {
   const { name, email, password, data_nascimento } = usuario;
-  const newUsuario = new Usuario(name, email, password, data_nascimento);
+  console.log("Inicio geração")
+  const passwordHash = await hash(password, 12);
+  console.log(passwordHash)
+  const newUsuario = new Usuario(name, email, passwordHash, data_nascimento);
   await new UsuarioRepository().save(newUsuario);
 })
 
 ipcMain.handle('findByEmail', async (_: any, email: string) => {
   return await new UsuarioRepository().findByEmail(email);
+})
+
+ipcMain.handle('hash_password', async (_: any, credentials: any) => {
+  const { password, password_hash } = credentials;
+  return await compare(password, password_hash);
 })
 
 ipcMain.on("change-screen", (_: any, id: string) => {
