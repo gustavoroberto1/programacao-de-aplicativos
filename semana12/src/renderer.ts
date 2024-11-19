@@ -6,6 +6,8 @@ var listaVeiculos: Veiculo[] = [];
 document.getElementById("botao-cadastrar")?.addEventListener("click", async (event: MouseEvent) => {
     event.preventDefault();
 
+
+    var id = document.getElementById("combobox") as HTMLSelectElement
     var modelo = document.getElementById("modelo") as HTMLInputElement;
     var cor = document.getElementById("cor") as HTMLInputElement
     var ano = document.getElementById("ano") as HTMLInputElement
@@ -13,7 +15,11 @@ document.getElementById("botao-cadastrar")?.addEventListener("click", async (eve
     var placa = document.getElementById("placa") as HTMLInputElement
     var imagem = document.getElementById("imagem") as HTMLInputElement
 
+    console.log(id.value)
+
     const novaVeiculo = new Veiculo(modelo.value, cor.value, Number(ano.value), Number(preco.value), placa.value, imagem.value);
+
+
 
     listaVeiculos.push(novaVeiculo);
     (window as any).bancoAPI.createVeiculo(novaVeiculo);
@@ -40,6 +46,19 @@ window.onload = async () => {
         listaVeiculos.push(veiculo);
     }
     render();
+    preencheComboBox()
+}
+
+
+function preencheComboBox() {
+    var combobox = document.getElementById("combobox");
+    combobox.innerHTML = `<option value="" disabled="true">Selecione uma opção</option>`;
+
+    for (var i = 0; i < listaVeiculos.length; i++) {
+        combobox.innerHTML += `
+            <option value="${listaVeiculos[i].getId()}">${listaVeiculos[i].getModelo()}</option>
+        `;
+    }
 }
 
 function render() {
