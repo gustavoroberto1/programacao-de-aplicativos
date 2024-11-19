@@ -151,3 +151,8 @@ form button:hover {
   background-color: #ff0000;
   border-bottom-right-radius: 16px
 }
+
+select {
+  padding: 15px;
+  border-radius: 10px; background-color: red;
+}
