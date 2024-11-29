@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+#grafico {
+  width: 1000px;
+  height: 500px;
+}
