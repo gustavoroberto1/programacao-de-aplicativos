@@ -138,8 +138,7 @@ function desenharGraficoPizza() {
         legend: { orient: 'vertical', left: 'left', data: ['Produto A', 'Produto B', 'Produto C', 'Produto D'] },
         series: [{
             name: 'Vendas',
-            type: 'pie', // Tipo de gráfico de pizza
-            radius: ['40%', '70%'], // Donut (com buraco no meio)
+            type: 'pie',
             avoidLabelOverlap: false,
             label: { show: false, position: 'center' },
             labelLine: { show: false },
